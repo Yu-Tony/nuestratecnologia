@@ -14,7 +14,7 @@ class User{
     public $password;  
     public $typeAccount; 
     public $genero; 
-    
+    public $telefono; 
     
  
     // constructor
@@ -27,7 +27,7 @@ class User{
     
         $this->typeAccount = 0;
 
-        $call = 'CALL usuarioCrear(?, ?, ?, ?, ?)';
+        $call = 'CALL usuarioCrear(?, ?, ?, ?, ?, ?)';
     
         // prepare
         $stmt = $this->conn->prepare($call);
@@ -39,8 +39,7 @@ class User{
         $this->email=htmlspecialchars(strip_tags($this->email));
         $this->password=htmlspecialchars(strip_tags($this->password));
         $this->typeAccount=htmlspecialchars(strip_tags($this->typeAccount));
-
-        
+        $this->genero=htmlspecialchars(strip_tags($this->genero));
         
 
         // bind the values
@@ -56,6 +55,8 @@ class User{
         // hash the password before saving to database
         $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
         $stmt->bindParam(5, $password_hash);
+
+        $stmt->bindParam(6, $this->genero);
     
         // execute, also check if was successful
         if($stmt->execute()){

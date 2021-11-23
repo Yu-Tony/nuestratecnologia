@@ -48,7 +48,8 @@ if($jwt){
         $user->id = $decoded->data->id;
         $user->birthday =  $data->birthdayP;
         $user->gender =  $data->genderP;
-        $user->typeAccount =  $data->TypeAccountP;
+        $user->telefono =  $data->telefonoP;
+   
 
         
         

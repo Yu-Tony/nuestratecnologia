@@ -27,6 +27,8 @@ $user->firstname = $data->nombre;
 $user->lastname = $data->apellido;
 $user->email = $data->email;
 $user->password = $data->password;
+$user->genero = $data->genero;
+
 
 
  

@@ -17,12 +17,79 @@ include_once 'navbar/navbar.php';
 
 
 	<script>
-		    /*----------------------------------------------SIGN IN---------------------------------------*/
+
+	var estado = 0;
+	var municipio = 0;
+	var editNumber = 0;
+	var idAccount = 0;
+
+    $(document).ready()
+    {
+
+		getUserAdress();
+
+    }
 
 
-     // trigger when registration form is submitted
-	 $(document).on('submit', '#sign_up_form', function(){
+
+	// Obtener municipios
+    function getval(sel)
+    {
+        //var estado = $("#jmr_contacto_estado option:selected").val();
+        //alert(sel.value);
+
+        var estado = sel.value;
+        
+        $.ajax({
+            type: "POST",
+            url: "php/procesar-estados.php",
+            data: { municipios : estado } 
+        }).done(function(data){
+            $("#municipio").html(data);
+        });
+    }
+
+
+	function getUserAdress(){
+    	// validate jwt to verify access
+    	var jwt = getCookie('jwt');
+    	$.post("api/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
 		
+    	    idAccount = result.data.id;
+		
+    	    $.ajax({
+    	    url: "php/getAddress.php",
+    	    type : "POST",
+    	    data: {'idUser': idAccount,'function': 2}, 
+    	    success : function(result) {
+
+    	        //alert(result);
+    	        $("#adress_form").html(result);  
+
+				 estado = $(".getEstado").html();
+				 municipio = $(".getMunicipio").html();
+				 editNumber = $(".editNumber").val();
+				 
+
+    	        },
+    	        error: function(xhr, resp, text){
+    	            // on error, tell the user sign up failed
+
+    	            console.log("Error al traer   " + text);
+    	            console.log("Response text  " + xhr.responseText);
+
+    	        }
+    	    });
+		
+    	})
+	
+    	// on error/fail, tell the user he needs to login to show the account page
+    	.fail(function(result){});
+    }
+
+	// trigger when login form is submitted
+	$(document).on('submit', '#adress_form', function()
+	{
 		$.fn.serializeObject = function()
 		{
 		var o = {};
@@ -41,77 +108,103 @@ include_once 'navbar/navbar.php';
 		};
 
 		// get form data
-		var sign_up_form=$(this);
-		var form_data=JSON.stringify(sign_up_form.serializeObject());
+		var adress_form=$(this);
+		
+		var adress_form_data=JSON.stringify(adress_form.serializeObject());
+	
+		var myJsonObject = JSON.parse(adress_form_data); //change to obj
+		myJsonObject.idUser = idAccount; //add something
+		adress_form_data = JSON.stringify(myJsonObject); //change back to string
+	
+		if(editNumber==0)
+		{
+			//alert("no hay nada, pero" + adress_form_data );
+			
+			$.ajax({
+				url: "php/setAddress.php",
+				type : "POST",
+				contentType : 'application/json',
+				data : adress_form_data,
+				success : function(result){
+				console.log(result);
+			
+				},
+				error: function(xhr, resp, text){
+				console.log("fail");
+					// on error, tell the user login has failed & empty the input boxes
+					console.log("Error al iniciar sesion " + text);
+					console.log("Response text  " + xhr.responseText);
+				}
+			});
+		}
+		else
+		{
+			//alert("si hay algo" + adress_form_data );
+			$.ajax({
+				url: "php/editAddress.php",
+				type : "POST",
+				contentType : 'application/json',
+				data : adress_form_data,
+				success : function(result){
+					
+				console.log(result);
+			
+				},
+				error: function(xhr, resp, text){
+				console.log("fail");
+					// on error, tell the user login has failed & empty the input boxes
+					console.log("Error al iniciar sesion " + text);
+					console.log("Response text  " + xhr.responseText);
+				}
+			});
+		}
+		/*
 
+		// get form data
 		
 
-		//console.log(form_data);
+		var myJsonObject = JSON.parse(form_data); //change to obj
+		myJsonObject.somethingnew = true; //add something
+		form_data = JSON.stringify(myJsonObject); //change back to string
 
+		
 		// submit form data to api
-		$.ajax({
-			url: "/.php",
-			type : "POST",
-			contentType : 'application/json',
-			data : form_data,
-			success : function(result) {
-				// if response is a success, tell the user it was a successful sign up & empty the input boxes
-				//alert(result);
-				$( "#navbarLogin" ).hide();
-				$( "#navbarLogged" ).show();
-				sign_up_form.find('input').val('');
-				window.location = 'index.php';
-			},
-			error: function(xhr, resp, text){
-				// on error, tell the user sign up failed
-				console.log("Error al crear cuenta  " + text);
-				console.log("Response text  " + xhr.responseText);
-				$('#response-sign').html("<div class='alert alert-danger'>Unable to sign up. Please contact admin.</div>");
-			}
-		});
 
-		return false;
+
+
+
+		return false;*/
 	});
 
-    $(document).ready()
-        {
 
-       //https://jonathanmelgoza.com/blog/select-dinamico-de-estados-y-municipios-con-jquery-y-php/
-             $.ajax({
-                type: "POST",
-                url: "php/procesar-estados.php",
-                data: { estados : "Mexico" } 
-                }).done(function(data){
-                    $("#estado").html(data);
-                    //alert(data);
-            });
-            
+	window.setTimeout(function(){   
+		//https://jonathanmelgoza.com/blog/select-dinamico-de-estados-y-municipios-con-jquery-y-php/
+		$.ajax({
+            type: "POST",
+            url: "php/procesar-estados.php",
+            data: { estados : "Mexico" } 
+            }).done(function(data){
+                $("#estado").html(data);
 
-    
-        
-        }
+				$("#estado").val(estado).change();
+				
+                //alert(data);
+        });
 
 
- 
-// Obtener municipios
-            function getval(sel)
-            {
-                //var estado = $("#jmr_contacto_estado option:selected").val();
-                //alert(sel.value);
 
-                var estado = sel.value;
-                
-                $.ajax({
-                    type: "POST",
-                    url: "php/procesar-estados.php",
-                    data: { municipios : estado } 
-                }).done(function(data){
-                    $("#municipio").html(data);
-                });
-            }
+      }, 600);
+
+	  window.setTimeout(function(){   
+	
+		$("#municipio").val(municipio).change();
 
 
-    
+      }, 1000);
+
+
+	 
+
 
 	
 	</script>
@@ -132,23 +225,7 @@ include_once 'navbar/navbar.php';
                     <div class="signup-form"><!--sign up form-->
 						<h2>Agrega tu dirección</h2>
 						<form id="adress_form" method="POST" onsubmit="return false" >
-                        <h6>Localidad</h6>
-							<input name="pais" id="pais" type="text" placeholder="País" required readonly value="México">
-                            <select style="margin-bottom: 5%" name="estado" id="estado" id="estado" required onchange="getval(this);">
-                                <option>Selecciona tu estado</option>
-                            </select>
-                            <select style="margin-bottom: 5%" id="municipio" name="municipio" required>
-                                <option>Selecciona tu municipio</option>
-                            </select>
-                            <input name="cp" id="cp" type="text" placeholder="Código Postal" required />
-                        <h6>Dirección</h6>
-                            <input name="colonia" id="colonia" type="text" placeholder="Colonia" required />
-							<input name="calle" id="calle" type="text" placeholder="Calle" required />
-                            <input name="numeroE" id="numeroE" type="text" placeholder="Número Exterior" required />
-                            <input name="numeroI" id="numeroI" type="text" placeholder="Número Interior" />
-
-							<button type="submit" class="btn btn-default">Agregar dirección</button>
-
+                        
                             
 
 

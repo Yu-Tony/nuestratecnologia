@@ -21,24 +21,20 @@ include_once 'navbar/navbar.php';
         $(document).ready()
         {
         
-        showUpdateAccountForm();
-        // getTypeAccount();
-        //getMessagesChat();
-
-
-
-    
+            getUserInfo();
+            getUserAdress();
+            //getMessagesChat();
         
         }
 
         var idAccount=0;
 
-            function showUpdateAccountForm(){
+        function getUserInfo(){
                 // validate jwt to verify access
                 var jwt = getCookie('jwt');
                 $.post("api/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
                 
-                console.log(result);
+        
                     idAccount = result.data.id;
 
                     
@@ -76,7 +72,141 @@ include_once 'navbar/navbar.php';
         
                     $('#mensaje').html("<div class='alert alert-danger'>Please login to access the account page.</div>");
                 });
-            }
+        }
+
+        function getUserAdress(){
+                // validate jwt to verify access
+                var jwt = getCookie('jwt');
+                $.post("api/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
+                
+          
+                    idAccount = result.data.id;
+
+
+             
+                    $.ajax({
+                    url: "php/getAddress.php",
+                    type : "POST",
+                    data: {'idUser': idAccount,'function': 1}, 
+                    success : function(result) {
+
+                           // alert(result);
+                            $("#profileAdress").html(result);  
+                            $("#btnDireccion").html("Editar dirección");  
+                                                   
+
+                        },
+                        error: function(xhr, resp, text){
+                            // on error, tell the user sign up failed
+
+                            console.log("Error al traer   " + text);
+                            console.log("Response text  " + xhr.responseText);
+                            $("#btnDireccion").html("Agregar dirección");  
+                            //$('#response-sign').html("<div class='alert alert-danger'>Unable to sign up. Please contact admin.</div>");
+                        }
+                    });
+                                      
+                })
+            
+                // on error/fail, tell the user he needs to login to show the account page
+                .fail(function(result){
+        
+                    
+                });
+        }
+
+        $(document).on('click', '.direccionOptions', function() {
+
+          window.location = 'adress.php';
+
+           /* var jwt = getCookie('jwt');
+            $.post("api/validate_token.php", JSON.stringify({ jwt:jwt }))
+            .done(function(result) {
+                var userMail = result.data.email;
+            
+
+
+                $.ajax({
+                    url: "diploma/getDiploma.php",
+                    type : "POST",
+                    data: {'course': nivelName,'mail': userMail}, 
+                    success : function(result) {
+
+                    //alert(result);
+                        $("#diplomaAlumno").html(result);                         
+
+                    },
+                    error: function(xhr, resp, text){
+                        // on error, tell the user sign up failed
+                        window.location = ' error/404.html';
+                        console.log("Error al crear cuenta  " + text);
+                        console.log("Response text  " + xhr.responseText);
+                        //$('#response-sign').html("<div class='alert alert-danger'>Unable to sign up. Please contact admin.</div>");
+                    }
+                });
+            
+            })
+            .fail(function() {
+
+            });*/
+
+
+        });
+
+        $(function(){ /* DOM ready */
+          $(".edit-things").click(function() {
+              //alert('best take my own advice ');
+              
+              $('input[type=text], input[type=email], input[type=password], input[type=number]').removeAttr('readonly');
+
+              document.getElementById("birthdayP").disabled = false;
+              document.getElementById("genderP").disabled = false;
+
+              $('.save-things').css( "display", "" );
+             
+              $(this).css( "display", "none" );
+              $('.cancel-things').css( "display", "" );
+            
+          });
+      });
+
+      $(function(){ /* DOM ready */
+          $(".cancel-things").click(function() {
+              //alert('best take my own advice ');
+              
+              $('input[type=text], input[type=email], input[type=password], input[type=number]').prop('readonly', true);
+              document.getElementById("birthdayP").disabled = true;
+              document.getElementById("genderP").disabled = true;
+
+              $('.save-things').css( "display", "none" );
+
+             
+              $(this).css( "display", "none" );
+              $('.edit-things').css( "display", "" );
+            
+          });
+      });
+
+      $(function(){ /* DOM ready */
+          $(".save-things").click(function() {
+
+                var name =  document.getElementById("firstnameP").value;
+                var last = document.getElementById("lastnameP").value;
+                var mail = document.getElementById("emailP").value;
+
+                var telefono = document.getElementById("telefonoP").value;
+                var fechaNac =  document.getElementById('birthdayP').value;
+                var pass =  document.getElementById('passwordP').value;
+
+                var genero = $( "#genderP" ).val();
+
+
+              
+             
+          });
+      });
+
+
     </script>
 
 
@@ -135,11 +265,16 @@ include_once 'navbar/navbar.php';
                     <div class="col-md-6">
                                 <div class="media">
                                     <label>Nombre</label>
-                                    <input type="text" name="firstnameP" id="firstnameP" required disabled class="form-control"/>
+                                    <input type="text" name="firstnameP" id="firstnameP" required readonly class="form-control"/>
                                 </div>
                                 <div class="media">
                                     <label>Correo Electronico</label>
-                                    <input name="emailP" id="emailP" type="email" required disabled class="form-control"/>
+                                    <input name="emailP" id="emailP" type="email" required readonly class="form-control"/>
+                                </div>
+
+                                <div class="media">
+                                    <label>Telefono</label>
+                                    <input name="telefonoP" id="telefonoP" type="number" readonly class="form-control"/>
                                 </div>
                                 
                                 <div class="media">
@@ -161,7 +296,7 @@ include_once 'navbar/navbar.php';
                     <div class="col-md-6">
                                 <div class="media">
                                     <label>Apellido</label>
-                                    <input type="text" class="form-control" name="lastnameP" id="lastnameP" required disabled />
+                                    <input type="text" class="form-control" name="lastnameP" id="lastnameP" required readonly />
                                     
                                 </div>
                                 <div class="media">
@@ -170,12 +305,12 @@ include_once 'navbar/navbar.php';
                                 </div>
                                 <div class="media">
                                     <label>Contraseña</label>
-                                    <input name="passwordP" id="passwordP" type="password" required disabled class="form-control"/>
+                                    <input name="passwordP" id="passwordP" type="password" required readonly class="form-control"/>
                                 </div>
 
-                                <button style="margin-top: 5%">Editar Perfil</button>
-                                <button style="margin-top: 5%">Guardar Perfil</button>
-                                <button>Cancelar </button>
+                                <button class="edit-things" style="margin-top: 5%">Editar Perfil</button>
+                                <button class="save-things" style="margin-top: 5%; display:none;">Guardar Perfil</button>
+                                <button class="cancel-things" style="margin-top: 5%; display:none;">Cancelar </button>
                         
                     </div>
                 </div>
@@ -183,19 +318,11 @@ include_once 'navbar/navbar.php';
                 <div class="col-lg-6">
                     <h3 class="dark-color">Dirección</h3>
 
-                    <ul>
-                        <li>
-                            <div>
-                                <dt>Direccion</dt>
-                                <dd>Colonia, Calle, numero ext, numero int</dd>
-                                <dt>Localidad</dt>
-                                <dd>País, estado, municipio, cp</dd>
-                            </div>
-                        </li>
+                    <ul id="profileAdress">
+                        
                     </ul>
 
-                    <button style="margin-top: 3%">Editar dirección</button>
-                    <button style="margin-top: 3%">Agregar dirección</button>
+                    <button id="btnDireccion" class="direccionOptions" style="margin-top: 3%"></button>
                 </div>
 
             </div>

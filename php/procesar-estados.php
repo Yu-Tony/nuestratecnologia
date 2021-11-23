@@ -9,9 +9,10 @@ if(isset($_POST["estados"])){
 California Sur","Campeche","Chiapas","Chihuahua","Coahuila","Colima","Distrito Federal","Durango","MÃ©xico","Guanajuato","Guerrero","Hidalgo","Jalisco","MichoacÃ¡n","Morelos","Nayarit","Nuevo Leon","Oaxaca","Puebla","QuerÃ©taro","Quintana Roo","San
 Luis PotosÃ­","Sinaloa","Sonora","Tabasco","Tamaulipas","Tlaxcala","Veracruz","YucatÃ¡n","Zacatecas")                 );
      
-    
+ 
     foreach($countryArr[$country] as $value){
-        echo "<option>". $value . "</option>";
+        echo "<option = $value>". $value . "</option>";
+
     }
 }
 
@@ -2508,9 +2509,10 @@ if(isset($_POST["municipios"])){
 )
                 );
      
-    
+
     foreach($municipiosARR[$municipios] as $value){
-        echo "<option>". $value . "</option>";
+        echo "<option = $value>". $value . "</option>";
+     
     }
 }
 ?>

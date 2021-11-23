@@ -130,34 +130,9 @@ include_once 'navbar/navbar.php';
 				$( "#navbarLogin" ).hide();
 				$( "#navbarLogged" ).show();
 				login_form.find('input').val('');
-				//window.location = 'index.php';
+				window.location = 'index.php';
 
-				/*getTypeAccount();
-
-				var jwt = getCookie('jwt');
-				$.post("api/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) 
-				{
-					var MailAccount = result.data.email;
-					$.ajax({
-						url: "NavBar/getUsersMessages.php",
-						type : "POST",
-						data: {'mail': MailAccount}, 
-						success : function(result) {
-						
-						$("#messageChats").html(result);
-					
-						
-							
-						},
-						error: function(xhr, resp, text){
-							// on error, tell the user sign up failed
-							//window.location = ' error/404.html';
-							console.log("Error al crear cuenta  " + text);
-							console.log("Response text  " + xhr.responseText);
-							//$('#response-sign').html("<div class='alert alert-danger'>Unable to sign up. Please contact admin.</div>");
-						}
-					});
-				});*/
+				
 			
 			},
 			error: function(xhr, resp, text){
@@ -212,6 +187,19 @@ include_once 'navbar/navbar.php';
 							<input name="apellido" id="apellidoLogin" type="text" placeholder="Apellido" required oninput="validateLName();"/>
 							<input name="email" id="emailLogin" type="email" placeholder="Correo Electrónico" required oninput="validateMail();"/>
 							<input name="password" id="passwordLogin" type="password" placeholder="Contraseña" required oninput="validatePassword();"/>
+							<div class="media">
+                                        <div class="form-group">
+                            
+                                        <select class="form-control" id="genero" name="genero" required>
+                                        <option value="">Genero</option>
+                                        <option value="1">Mujer</option>
+                                        <option value="2">Hombre</option>
+                                        <option value="3">No binario</option>
+                                        <option value="4">Ninguno/Agénero</option>
+                                        <option value="5">Prefiero no decir</option>
+                                        </select>
+                                    </div>
+                                </div>
 							<button type="submit" class="btn btn-default">Registrarse</button>
 						</form>
 					</div><!--/sign up form-->
