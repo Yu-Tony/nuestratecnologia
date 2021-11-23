@@ -71,4 +71,21 @@ direccionNumeroInterior = p_direccionNumeroInterior,
 direccionNumeroExterior = p_direccionNumeroExterior,
 where direccionId = p_idAdress;
 end$$
+
+
+DELIMITER $$
+CREATE PROCEDURE `userUpdate` (IN `p_id` INT, IN `p_nombre` VARCHAR(60),IN `p_telefono` VARCHAR(60), IN `p_apellido` VARCHAR(60), IN `p_email` VARCHAR(60), IN `p_fechanac` DATE, 
+IN `p_genero` INT, IN `p_password` VARCHAR(256))  begin
+set @tempcontra = p_contraseña;
+select usuarioPassword into @tempcontra from Usuario where usuarioId = p_id;
+update Usuario set 
+usuarioNombre = p_nombre, 
+usuarioApellido = p_apellido, 
+usuarioFechaNacimiento = p_fechanac, 
+usuarioGenero = p_genero, 
+usuarioCorreo = p_email,
+usuarioTelefono = p_telefono,
+usuarioPassword = if(p_password = '', @tempcontra, p_password)
+where usuarioId = p_id;
+end$$
 								

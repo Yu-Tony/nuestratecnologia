@@ -142,7 +142,7 @@ include_once 'navbar/navbar.php';
 				console.log("Response text  " + xhr.responseText);
 	
 
-				$('#response-log').html("<div class='alert alert-danger'>Login failed. Email or password is incorrect.</div>");
+				//$('#response-log').html("<div class='alert alert-danger'>Login failed. Email or password is incorrect.</div>");
 				login_form.find('input').val('');
 			}
 		});

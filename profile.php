@@ -187,24 +187,55 @@ include_once 'navbar/navbar.php';
           });
       });
 
-      $(function(){ /* DOM ready */
-          $(".save-things").click(function() {
 
-                var name =  document.getElementById("firstnameP").value;
-                var last = document.getElementById("lastnameP").value;
-                var mail = document.getElementById("emailP").value;
+    $(document).on('submit', '#update_account_form', function(){
 
-                var telefono = document.getElementById("telefonoP").value;
-                var fechaNac =  document.getElementById('birthdayP').value;
-                var pass =  document.getElementById('passwordP').value;
+        $.fn.serializeObject = function()
+		{
+		var o = {};
+		var a = this.serializeArray();
+		$.each(a, function() {
+			if (o[this.name]) {
+				if (!o[this.name].push) {
+					o[this.name] = [o[this.name]];
+				}
+				o[this.name].push(this.value || '');
+			} else {
+				o[this.name] = this.value || '';
+			}
+		});
+		return o;
+		};
+    
 
-                var genero = $( "#genderP" ).val();
+        var update_account_form=$(this);
+        var jwt = getCookie('jwt');
+        var update_account_form_obj = update_account_form.serializeObject();
 
+        update_account_form_obj.jwt = jwt;
+        var form_data=JSON.stringify(update_account_form_obj);
 
-              
-             
-          });
-      });
+        $.ajax({
+            url: "api/update_user.php",
+            type : "POST",
+            contentType : 'application/json',
+            data : form_data,
+            success : function(result) {
+        
+                console.log(result);
+               
+            },
+        
+            // show error message to user
+            error: function(xhr, resp, text){
+                console.log("Error al iniciar sesion " + text);
+				        console.log("Response text  " + xhr.responseText);
+
+            }
+        });
+
+ 
+    });
 
 
     </script>
@@ -262,57 +293,63 @@ include_once 'navbar/navbar.php';
                 <div class="col-lg-6">
                     <h3 class="dark-color">Datos generales</h3>
 
-                    <div class="col-md-6">
-                                <div class="media">
-                                    <label>Nombre</label>
-                                    <input type="text" name="firstnameP" id="firstnameP" required readonly class="form-control"/>
-                                </div>
-                                <div class="media">
-                                    <label>Correo Electronico</label>
-                                    <input name="emailP" id="emailP" type="email" required readonly class="form-control"/>
-                                </div>
-
-                                <div class="media">
-                                    <label>Telefono</label>
-                                    <input name="telefonoP" id="telefonoP" type="number" readonly class="form-control"/>
-                                </div>
-                                
-                                <div class="media">
-                                    <label>Género</label>
-                                    <div class="form-group">
+                    <form id="update_account_form">
                             
-                                        <select class="form-control" id="genderP" name="genderP" disabled required>
-                                        <option value="">Seleccionar</option>
-                                        <option value="1">Mujer</option>
-                                        <option value="2">Hombre</option>
-                                        <option value="3">No binario</option>
-                                        <option value="4">Ninguno/Agénero</option>
-                                        <option value="5">Prefiero no decir</option>
-                                        </select>
+                        <div class="col-md-6">
+                                    <div class="media">
+                                        <label>Nombre</label>
+                                        <input type="text" name="firstnameP" id="firstnameP" required readonly class="form-control"/>
                                     </div>
-                                </div>
-                    </div>
+                                    <div class="media">
+                                        <label>Correo Electronico</label>
+                                        <input name="emailP" id="emailP" type="email" required readonly class="form-control"/>
+                                    </div>
 
-                    <div class="col-md-6">
-                                <div class="media">
-                                    <label>Apellido</label>
-                                    <input type="text" class="form-control" name="lastnameP" id="lastnameP" required readonly />
+                                    <div class="media">
+                                        <label>Telefono</label>
+                                        <input name="telefonoP" id="telefonoP" type="number" readonly class="form-control"/>
+                                    </div>
                                     
-                                </div>
-                                <div class="media">
-                                    <label>Fecha de nacimiento</label>
-                                    <input id="birthdayP" disabled type="date" name="birthdayP"  min='1899-01-01' max="<?=date('Y-m-d',strtotime('now'));?>" style="margin-bottom: 5%; "/>
-                                </div>
-                                <div class="media">
-                                    <label>Contraseña</label>
-                                    <input name="passwordP" id="passwordP" type="password" required readonly class="form-control"/>
-                                </div>
+                                    <div class="media">
+                                        <label>Género</label>
+                                        <div class="form-group">
+                                
+                                            <select class="form-control" id="genderP" name="genderP" disabled required>
+                                            <option value="">Seleccionar</option>
+                                            <option value="1">Mujer</option>
+                                            <option value="2">Hombre</option>
+                                            <option value="3">No binario</option>
+                                            <option value="4">Ninguno/Agénero</option>
+                                            <option value="5">Prefiero no decir</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                        </div>
 
-                                <button class="edit-things" style="margin-top: 5%">Editar Perfil</button>
-                                <button class="save-things" style="margin-top: 5%; display:none;">Guardar Perfil</button>
-                                <button class="cancel-things" style="margin-top: 5%; display:none;">Cancelar </button>
-                        
-                    </div>
+                        <div class="col-md-6">
+                                    <div class="media">
+                                        <label>Apellido</label>
+                                        <input type="text" class="form-control" name="lastnameP" id="lastnameP" required readonly />
+                                        
+                                    </div>
+                                    <div class="media">
+                                        <label>Fecha de nacimiento</label>
+                                        <input id="birthdayP" disabled type="date" name="birthdayP"  min='1899-01-01' max="<?=date('Y-m-d',strtotime('now'));?>" style="margin-bottom: 5%; "/>
+                                    </div>
+                                    <div class="media">
+                                        <label>Contraseña</label>
+                                        <input name="passwordP" id="passwordP" type="password" readonly class="form-control"/>
+                                    </div>
+                            
+                        </div>
+
+                        <button  type="button"  class="edit-things" style="margin-top: 5%">Editar Perfil</button>
+                        <button type='submit' class="save-things" style="margin-top: 5%; display:none;">Guardar Perfil</button>
+                        <button  type="button"  class="cancel-things" style="margin-top: 5%; display:none;">Cancelar </button>
+
+                           
+                    </form>
+
                 </div>
 
                 <div class="col-lg-6">

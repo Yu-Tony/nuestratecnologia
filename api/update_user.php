@@ -69,6 +69,7 @@ if($jwt){
                     "email" => $user->email,
                     "birthday" => $user->birthday,
                     "typeAccount"=> $user->typeAccount,
+                    "telefono"=> $user->telefono,
                     "gender" => $user->gender
                 )
             );
@@ -104,7 +105,7 @@ if($jwt){
     
         // show error message
         echo json_encode(array(
-            "message" => "Access denied.",
+            "message" => "Access denied In.",
             "error" => $e->getMessage()
         ));
     }
@@ -117,6 +118,6 @@ else{
     http_response_code(401);
  
     // tell the user access denied
-    echo json_encode(array("message" => "Access denied."));
+    echo json_encode(array("message" => "Access denied Out."));
 }
 ?>

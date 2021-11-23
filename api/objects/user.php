@@ -121,10 +121,12 @@ class User{
         }else{return false;}
     }
  
+
     // update a user record
     public function update(){
       
-         $call = 'CALL userUpdate(?,?,?,?,?,?,?,?)';
+        $this->typeAccount = 0;
+         $call = 'CALL usuarioUpdate(?,?,?,?,?,?,?,?)';
     
         // prepare
         $stmt = $this->conn->prepare($call);
@@ -136,15 +138,16 @@ class User{
         $this->email=htmlspecialchars(strip_tags($this->email));
         $this->password=htmlspecialchars(strip_tags($this->password));
         $this->typeAccount=htmlspecialchars(strip_tags($this->typeAccount));
+        $this->telefono=htmlspecialchars(strip_tags($this->telefono));
         $this->gender=htmlspecialchars(strip_tags($this->gender));
         $this->birthday=htmlspecialchars(strip_tags($this->birthday));
 
         // bind the values
         $stmt->bindParam(1, $this->id);
         $stmt->bindParam(2, $this->firstname);
-        $stmt->bindParam(3, $this->lastname);
-        $stmt->bindParam(4, $this->email);
-        $stmt->bindParam(5, $this->typeAccount);
+        $stmt->bindParam(3, $this->telefono);
+        $stmt->bindParam(4, $this->lastname);
+        $stmt->bindParam(5, $this->email);
         $stmt->bindParam(6, $this->birthday);
         $stmt->bindParam(7, $this->gender);
         
