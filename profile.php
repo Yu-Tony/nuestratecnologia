@@ -22,7 +22,7 @@ include_once 'navbar/navbar.php';
         {
         
             getUserInfo();
-            getUserAdress();
+            getUserAddress();
             //getMessagesChat();
         
         }
@@ -43,10 +43,15 @@ include_once 'navbar/navbar.php';
                     document.getElementById("emailP").value = result.data.email;
 
 
+                    document.getElementById("telefonoP").value = result.data.telefono;
+
+                    
+
                     var dd = document.getElementById('genderP');
                     dd.selectedIndex = result.data.genero;
                     
 
+                    //alert(result.data.birthday);
 
                     //console.log(result.data);
                     if(result.data.birthday!=null)
@@ -74,7 +79,7 @@ include_once 'navbar/navbar.php';
                 });
         }
 
-        function getUserAdress(){
+        function getUserAddress(){
                 // validate jwt to verify access
                 var jwt = getCookie('jwt');
                 $.post("api/validate_token.php", JSON.stringify({ jwt:jwt })).done(function(result) {
@@ -91,7 +96,7 @@ include_once 'navbar/navbar.php';
                     success : function(result) {
 
                            // alert(result);
-                            $("#profileAdress").html(result);  
+                            $("#profileAddress").html(result);  
                             $("#btnDireccion").html("Editar dirección");  
                                                    
 
@@ -117,7 +122,7 @@ include_once 'navbar/navbar.php';
 
         $(document).on('click', '.direccionOptions', function() {
 
-          window.location = 'adress.php';
+          window.location = 'address.php';
 
            /* var jwt = getCookie('jwt');
             $.post("api/validate_token.php", JSON.stringify({ jwt:jwt }))
@@ -206,7 +211,7 @@ include_once 'navbar/navbar.php';
 		});
 		return o;
 		};
-    
+
 
         var update_account_form=$(this);
         var jwt = getCookie('jwt');
@@ -215,6 +220,8 @@ include_once 'navbar/navbar.php';
         update_account_form_obj.jwt = jwt;
         var form_data=JSON.stringify(update_account_form_obj);
 
+        
+
         $.ajax({
             url: "api/update_user.php",
             type : "POST",
@@ -222,7 +229,20 @@ include_once 'navbar/navbar.php';
             data : form_data,
             success : function(result) {
         
-                console.log(result);
+                //console.log(result);
+                setCookie("jwt", result.jwt, 1);
+
+                $('input[type=text], input[type=email], input[type=password], input[type=number]').prop('readonly', true);
+                document.getElementById("birthdayP").disabled = true;
+                document.getElementById("genderP").disabled = true;
+
+                $('.edit-things').css( "display", "" );
+                $('.save-things').css( "display", "none" );
+                
+               
+                $('.cancel-things').css( "display", "none" );
+
+
                
             },
         
@@ -234,7 +254,7 @@ include_once 'navbar/navbar.php';
             }
         });
 
- 
+ return false;
     });
 
 
@@ -344,8 +364,8 @@ include_once 'navbar/navbar.php';
                         </div>
 
                         <button  type="button"  class="edit-things" style="margin-top: 5%">Editar Perfil</button>
-                        <button type='submit' class="save-things" style="margin-top: 5%; display:none;">Guardar Perfil</button>
-                        <button  type="button"  class="cancel-things" style="margin-top: 5%; display:none;">Cancelar </button>
+                        <button type='submit'  class="save-things" style="margin-top: 5%; display:none;">Guardar Perfil</button>
+                        <button  type="button"  onclick="getUserInfo();"  class="cancel-things" style="margin-top: 5%; display:none;">Cancelar </button>
 
                            
                     </form>
@@ -355,7 +375,7 @@ include_once 'navbar/navbar.php';
                 <div class="col-lg-6">
                     <h3 class="dark-color">Dirección</h3>
 
-                    <ul id="profileAdress">
+                    <ul id="profileAddress">
                         
                     </ul>
 

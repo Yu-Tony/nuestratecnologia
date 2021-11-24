@@ -15,6 +15,7 @@ class User{
     public $typeAccount; 
     public $genero; 
     public $telefono; 
+    public $birthday; 
     
  
     // constructor
@@ -71,13 +72,13 @@ class User{
     //PARA LOG IN
     function emailExists(){
 
-        $call =  $this->conn->prepare('CALL userEmailExists(:email, @id, @nombre, @apellido, @contrasena, @tipo, @genero)');
+        $call =  $this->conn->prepare('CALL userEmailExists(:email, @id, @nombre, @apellido, @contrasena, @tipo, @genero, @birthday, @telefono)');
         $call->bindParam(':email', $this->email, PDO::PARAM_STR);       
 
         if($call->execute())
         {
                  
-            $select = $this->conn->query('SELECT @id, @nombre, @apellido, @contrasena, @tipo, @genero');
+            $select = $this->conn->query('SELECT @id, @nombre, @apellido, @contrasena, @tipo, @genero, @birthday, @telefono');
             $result = $select->fetch(PDO::FETCH_ASSOC);
         
             //var_dump($result);
@@ -90,6 +91,8 @@ class User{
                 $this->password = $result['@contrasena'];
                 $this->typeAccount = $result['@tipo'];
                 $this->genero = $result['@genero'];
+                $this->birthday = $result['@birthday'];
+                $this->telefono = $result['@telefono'];
 
 
                 return true;
@@ -139,9 +142,10 @@ class User{
         $this->password=htmlspecialchars(strip_tags($this->password));
         $this->typeAccount=htmlspecialchars(strip_tags($this->typeAccount));
         $this->telefono=htmlspecialchars(strip_tags($this->telefono));
-        $this->gender=htmlspecialchars(strip_tags($this->gender));
+        $this->genero=htmlspecialchars(strip_tags($this->genero));
         $this->birthday=htmlspecialchars(strip_tags($this->birthday));
 
+        
         // bind the values
         $stmt->bindParam(1, $this->id);
         $stmt->bindParam(2, $this->firstname);
@@ -149,7 +153,7 @@ class User{
         $stmt->bindParam(4, $this->lastname);
         $stmt->bindParam(5, $this->email);
         $stmt->bindParam(6, $this->birthday);
-        $stmt->bindParam(7, $this->gender);
+        $stmt->bindParam(7, $this->genero);
         
         if(!empty($this->password)){
             $password_hash = password_hash($this->password, PASSWORD_BCRYPT);

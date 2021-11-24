@@ -82,7 +82,7 @@
                 echo "<h6>Localidad</h6>";
                 echo "<input name=\"pais\" id=\"pais\" type=\"text\" placeholder=\"País\" required readonly value=\"México\">";
 
-                echo "<select style=\"margin-bottom: 5%\" name=\"estado\" id=\"estado\" id=\"estado\" required onchange=\"getval(this);\">";
+                echo "<select style=\"margin-bottom: 5%\" name=\"estado\" id=\"estado\"  required onchange=\"getval(this);\">";
                 echo "<option>Selecciona tu estado</option>";
                 echo "</select>";
 
@@ -122,7 +122,7 @@
             {
                 echo "<h6>Localidad</h6>";
                 echo "<input name=\"pais\" id=\"pais\" type=\"text\" placeholder=\"País\" required readonly value=\"México\">";
-                echo "<select style=\"margin-bottom: 5%\" name=\"estado\" id=\"estado\" id=\"estado\" required onchange=\"getval(this);\">";
+                echo "<select style=\"margin-bottom: 5%\" name=\"estado\" id=\"estado\" required onchange=\"getval(this);\">";
                 echo "<option>Selecciona tu estado</option>";
                 echo "</select>";
                 echo "<select style=\"margin-bottom: 5%\" id=\"municipio\" name=\"municipio\" required>";

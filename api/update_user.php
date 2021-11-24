@@ -47,11 +47,10 @@ if($jwt){
         $user->password = $data->passwordP;
         $user->id = $decoded->data->id;
         $user->birthday =  $data->birthdayP;
-        $user->gender =  $data->genderP;
+        $user->genero =  $data->genderP;
         $user->telefono =  $data->telefonoP;
-   
-
         
+      
         
         
 
@@ -67,10 +66,10 @@ if($jwt){
                     "firstname" => $user->firstname,
                     "lastname" => $user->lastname,
                     "email" => $user->email,
-                    "birthday" => $user->birthday,
                     "typeAccount"=> $user->typeAccount,
+                    "genero"=> $user->genero,
                     "telefono"=> $user->telefono,
-                    "gender" => $user->gender
+                    "birthday"=> $user->birthday
                 )
             );
             $jwt = JWT::encode($token, $key);
@@ -105,7 +104,7 @@ if($jwt){
     
         // show error message
         echo json_encode(array(
-            "message" => "Access denied In.",
+            "message" => "Access denied.",
             "error" => $e->getMessage()
         ));
     }
@@ -118,6 +117,6 @@ else{
     http_response_code(401);
  
     // tell the user access denied
-    echo json_encode(array("message" => "Access denied Out."));
+    echo json_encode(array("message" => "Access denied."));
 }
 ?>

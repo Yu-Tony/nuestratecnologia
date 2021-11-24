@@ -15,7 +15,7 @@ date_default_timezone_set('Asia/Manila');
 $key = "Tbsmm";
 //claim identifies the principal that issued the JWT.
 $issued_at = time();
-$expiration_time = $issued_at + (60 * 60); // valid for 1 hour
-$issuer = "http://localhost:8012/Acodemia/RestApiAuthLevel1/";
+$expiration_time = $issued_at + (60 * 60 * 5); // valid for 5 hours
+$issuer = "http://localhost:8012/nuestratecnologia/api/";
 ?>
 
