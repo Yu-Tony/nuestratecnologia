@@ -10,7 +10,7 @@ include_once 'navbar/navbar.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Carrito</title>
+    <title>Lista de deseos</title>
 
 </head><!--/head-->
 
@@ -24,8 +24,8 @@ include_once 'navbar/navbar.php';
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Producto</td>
-							<td class="description"></td>
+                            <td class="image"></td>
+							<td class="description">Nombre del producto</td>
 							<td class="price"></td>
 							<td class="quantity"></td>
 							<td class="total">Precio por unidad</td>
@@ -35,10 +35,10 @@ include_once 'navbar/navbar.php';
 					<tbody>
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
+								<a href=""><img src="images/product-details/1.jpg" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
+								<h4><a href="">Mouse</a></h4>
 								<p>Web ID: 1089772</p>
 							</td>
 							<td class="cart_price">
@@ -48,7 +48,7 @@ include_once 'navbar/navbar.php';
 								
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">$200</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -57,10 +57,10 @@ include_once 'navbar/navbar.php';
 
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
+								<a href=""><img src="images/product-details/2.jpg" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
+								<h4><a href="">Mouse</a></h4>
 								<p>Web ID: 1089772</p>
 							</td>
 							<td class="cart_price">
@@ -70,7 +70,7 @@ include_once 'navbar/navbar.php';
 								
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">$200</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -78,10 +78,10 @@ include_once 'navbar/navbar.php';
 						</tr>
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
+								<a href=""><img src="images/product-details/3.jpg" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
+								<h4><a href="">Mouse</a></h4>
 								<p>Web ID: 1089772</p>
 							</td>
 							<td class="cart_price">
@@ -91,7 +91,7 @@ include_once 'navbar/navbar.php';
 								
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">$200</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>

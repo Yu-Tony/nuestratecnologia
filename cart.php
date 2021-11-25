@@ -24,10 +24,11 @@ include_once 'navbar/navbar.php';
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
+							<td class="image"></td>
+							<td class="description">Nombre del producto</td>
+							<td class="opcion">Opción del producto</td>
+							<td class="price">Precio por unidad</td>
+							<td class="quantity">Cantidad</td>
 							<td class="total">Total</td>
 							<td></td>
 						</tr>
@@ -35,14 +36,21 @@ include_once 'navbar/navbar.php';
 					<tbody>
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
+								<a href=""><img src="images/product-details/1.jpg" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
+								<h4><a href="">Mouse</a></h4>
 								<p>Web ID: 1089772</p>
 							</td>
+							<td class="cart_option">
+								<select>
+									<option>Opción 1 </option>
+									<option>Bangladesh</option>
+								
+								</select>
+							</td>
 							<td class="cart_price">
-								<p>$59</p>
+								<p>$200</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -52,7 +60,7 @@ include_once 'navbar/navbar.php';
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">$200</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -61,14 +69,21 @@ include_once 'navbar/navbar.php';
 
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
+								<a href=""><img src="images/product-details/2.jpg" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
+								<h4><a href="">Mouse</a></h4>
 								<p>Web ID: 1089772</p>
 							</td>
+							<td class="cart_option">
+								<select>
+									<option>Opción 1 </option>
+									<option>Bangladesh</option>
+								
+								</select>
+							</td>
 							<td class="cart_price">
-								<p>$59</p>
+								<p>$200</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -78,7 +93,7 @@ include_once 'navbar/navbar.php';
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">$200</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -86,14 +101,21 @@ include_once 'navbar/navbar.php';
 						</tr>
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
+								<a href=""><img src="images/product-details/3.jpg" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
+								<h4><a href="">Mouse</a></h4>
 								<p>Web ID: 1089772</p>
 							</td>
+							<td class="cart_option">
+								<select>
+									<option>Opción 1 </option>
+									<option>Bangladesh</option>
+								
+								</select>
+							</td>
 							<td class="cart_price">
-								<p>$59</p>
+								<p>$200</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -103,7 +125,7 @@ include_once 'navbar/navbar.php';
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">$200</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -118,31 +140,32 @@ include_once 'navbar/navbar.php';
 	<section id="do_action">
 		<div class="container">
 			<div class="heading">
-				<h3>What would you like to do next?</h3>
-				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+				<h3>Estimar costo</h3>
+				<p>A continuación puedes ingresar cupones o tarjetas de regalo y estimar el costo junto con el envío</p>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="chose_area">
 						<ul class="user_option">
-							<li>
+							
+							<label>Usar cupon</label>
+
+							<li style="margin-bottom:5%"><input type="text"><button>aplicar</button></li>
+						
+							<label>Usar tarjeta de regalo</label>
+
+							<li style="margin-bottom:5%"><input type="text"><button>aplicar</button></li>
+
+							<li style="margin-top:2%">
 								<input type="checkbox">
-								<label>Use Coupon Code</label>
-							</li>
-							<li>
-								<input type="checkbox">
-								<label>Use Gift Voucher</label>
-							</li>
-							<li>
-								<input type="checkbox">
-								<label>Estimate Shipping & Taxes</label>
+								<label>Estimar envío e impuestos</label>
 							</li>
 						</ul>
-						<ul class="user_info">
+						<ul class="user_info" style="margin:0px">
 							<li class="single_field">
-								<label>Country:</label>
+								<label>Estado:</label>
 								<select>
-									<option>United States</option>
+									<option>Seleccionar </option>
 									<option>Bangladesh</option>
 									<option>UK</option>
 									<option>India</option>
@@ -154,9 +177,9 @@ include_once 'navbar/navbar.php';
 								
 							</li>
 							<li class="single_field">
-								<label>Region / State:</label>
+								<label>Municipio:</label>
 								<select>
-									<option>Select</option>
+									<option>Seleccionar </option>
 									<option>Dhaka</option>
 									<option>London</option>
 									<option>Dillih</option>
@@ -168,24 +191,24 @@ include_once 'navbar/navbar.php';
 							
 							</li>
 							<li class="single_field zip-field">
-								<label>Zip Code:</label>
+								<label>Codigo postal:</label>
 								<input type="text">
 							</li>
 						</ul>
-						<a class="btn btn-default update" href="">Get Quotes</a>
-						<a class="btn btn-default check_out" href="">Continue</a>
+						<a class="btn btn-default update" href="">Crear estimado</a>
+
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>$59</span></li>
-							<li>Eco Tax <span>$2</span></li>
-							<li>Shipping Cost <span>Free</span></li>
+							<li>Sub total del carrito <span>$200</span></li>
+							<li>Impuestos <span>$2</span></li>
+							<li>Costo de envío <span>Free</span></li>
 							<li>Total <span>$61</span></li>
 						</ul>
-							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Check Out</a>
+							<a class="btn btn-default update" href="">Actualizar estimado</a>
+							<a class="btn btn-default check_out" href="checkout.php">Ir a check out</a>
 					</div>
 				</div>
 			</div>

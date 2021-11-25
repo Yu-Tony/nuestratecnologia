@@ -20,6 +20,7 @@
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
 
+    
 	<script src="js/loginValidation.js"></script>
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -123,7 +124,7 @@
                 <div class="shop-menu clearfix pull-right">
                     <ul class="nav navbar-nav">
                         <li><a href=""><i class="fa fa-envelope"></i> Mensajes</a></li>
-                        <li><a href=""><i class="fa fa-star"></i> Lista de deseos</a></li>
+                        <li><a href="wishlist.php"><i class="fa fa-star"></i> Lista de deseos</a></li>
                         <li><a href="checkout.php"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                         <li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
 
