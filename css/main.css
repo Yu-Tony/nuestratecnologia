@@ -968,7 +968,7 @@ h2.title {
 
 .choose ul li a:hover {
     background: none;
-    color: #FE980F;
+    color: #1761B0;
 }
 
 .category-tab {
@@ -1099,8 +1099,8 @@ h2.title {
 .pagination .active span:hover,
 .pagination .active a:focus,
 .pagination .active span:focus {
-    background-color: #FE980F;
-    border-color: #FE980F;
+    background-color: #1761B0;
+    border-color: #1761B0;
     color: #FFFFFF;
     cursor: default;
     z-index: 2;
@@ -1121,7 +1121,7 @@ h2.title {
 }
 
 .pagination li a:hover {
-    background: #FE980F;
+    background: #7db2eb;
     color: #fff;
 }
 
@@ -1232,8 +1232,7 @@ h2.title {
 }
 
 .product-information span span {
-    color: #FE980F;
-    float: left;
+    color: #1761B0;
     font-family: 'Roboto', sans-serif;
     font-size: 30px;
     font-weight: 700;

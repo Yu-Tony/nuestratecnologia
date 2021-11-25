@@ -82,17 +82,27 @@ include_once 'navbar/navbar.php';
 
 
                             <h5>Marca<span style="color:red;">*</span></h5>
-                            <select style="margin-bottom: 5%" name="marcaProducto" id="marcaProducto" required data-toggle="tooltip" data-placement="right" title="Seleccionar una marca para el producto.">
-                                <option>Selecciona una marca</option>
+                            <select data-placeholder="Escribe para comenzar a filtrar" class="chosen-select" style="margin-bottom: 5%" name="marcaProducto" id="marcaProducto" required data-toggle="tooltip" data-placement="right" title="Seleccionar una marca para el producto.">
+                                <option value=""></option>
+                                <option>American Black Bear</option>
+                                <option>Asiatic Black Bear</option>
+                                <option>Brown Bear</option>
+                                <option>Giant Panda</option>
+                                <option>Sloth Bear</option>
+                                <option>Sun Bear</option>
+                                <option>Polar Bear</option>
+                                <option>Spectacled Bear</option>
                             </select>
+
+
 
                             <h6 class="col-12">¿No encuentras la marca de tu producto?<a href="#crearMarca_form"> Crea una nueva </a></h6> 
 
-                            <h5 style="margin-top:5%">Categoría<span style="color:red;">*</span></h5>
+                            <h5 style="margin-top:5%">Categoría<span style="color:red;">*</span></h5 required>
   
               
 
-                            <select data-placeholder="Escribe para comenzar a filtrar" multiple class="chosen-select" name="test" required data-toggle="tooltip" data-placement="right" title="Seleccionar una o varias categorías para el producto.">
+                            <select data-placeholder="Escribe para comenzar a filtrar" multiple class="chosen-select" name="test" data-toggle="tooltip" data-placement="right" title="Seleccionar una o varias categorías para el producto.">
                                 <option value=""></option>
                                 <option>American Black Bear</option>
                                 <option>Asiatic Black Bear</option>
@@ -116,7 +126,7 @@ include_once 'navbar/navbar.php';
                                 <input  class="col-12" type="text" value="" placeholder="Crea opciones para tu producto" />
                             </div>	
 
-                            <input class="btn btn-primary btn-sm" type="submit" name="categoriaAdd" value="Agregar marca" data-toggle="tooltip" data-placement="right" title="Click para crear el producto. Recuerda llenar todos los campos antes de dar click"/>
+                            <input class="btn btn-primary btn-sm" type="submit" name="categoriaAdd" value="Agregar Producto" data-toggle="tooltip" data-placement="right" title="Click para crear el producto. Recuerda llenar todos los campos antes de dar click"/>
 
 
 						</form>

@@ -161,16 +161,7 @@
                 </div>
                 <div class="mainmenu pull-left">
                     <ul class="nav navbar-nav collapse navbar-collapse">
-                        <li><a href="index.php">Inicio</a></li>
-                        <li class="dropdown"><a href="#">Categorías<i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a href="shop.php">Products</a></li>
-                                <li><a href="product-details.php">Product Details</a></li> 
-                                <li><a href="checkout.php">Checkout</a></li> 
-                                <li><a href="cart.php">Cart</a></li> 
-                                <li><a href="login.php" class="active">Login</a></li> 
-                            </ul>
-                        </li> 
+                        
                         
                     </ul>
                 </div>
