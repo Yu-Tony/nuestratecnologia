@@ -995,7 +995,7 @@ h2.title {
 }
 
 .category-tab ul li a:hover {
-    background: #FE980F;
+    background: #AF0C15;
     color: #fff;
 }
 
@@ -1121,7 +1121,7 @@ h2.title {
 }
 
 .pagination li a:hover {
-    background: #7db2eb;
+    background: #AF0C15;
     color: #fff;
 }
 
@@ -1187,7 +1187,7 @@ h2.title {
 }
 
 .item-control i {
-    background: #FE980F;
+    background: #1761B0;
     color: #FFFFFF;
     font-size: 20px;
     padding: 5px 10px;
@@ -1264,7 +1264,7 @@ h2.title {
 }
 
 .cart {
-    background: #FE980F;
+    background: #1761B0;
     border: 0 none;
     border-radius: 0;
     color: #FFFFFF;
@@ -1272,6 +1272,12 @@ h2.title {
     font-size: 15px;
     margin-bottom: 10px;
     margin-left: 20px;
+}
+
+.cart:hover {
+    background: #AF0C15;
+    color: #FFFFFF;
+  
 }
 
 .shop-details-tab {
@@ -1544,7 +1550,7 @@ h2.title {
 }
 
 #cart_items .cart_info .cart_menu {
-    background: #FE980F;
+    background: #1761B0;
     color: #fff;
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
@@ -1594,7 +1600,7 @@ h2.title {
 }
 
 #cart_items .cart_info .cart_total_price {
-    color: #FE980F;
+    color: #0D3580;
     font-size: 24px;
 }
 
@@ -1926,7 +1932,7 @@ textarea {
 }
 
 #cart_items .cart_info .table.table-condensed.total-result span {
-    color: #FE980F;
+    color: #AF0C15;
     font-weight: 700;
     font-size: 16px
 }
@@ -2310,10 +2316,30 @@ textarea {
 }
 
 .btn.btn-primary {
-    background: #FE980F;
+    background: #1761B0;
+    color: white;
     border: 0 none;
     border-radius: 0;
     margin-top: 16px;
+}
+
+.btn.btn-primary:hover {
+    background: #AF0C15;
+
+}
+
+.btn.btn-third {
+    background: #AF0C15;
+    color: white;
+    border: 0 none;
+    border-radius: 0;
+    margin-top: 16px;
+}
+
+.btn.btn-third:hover {
+    background: #D2292D;
+    color: black;
+
 }
 
 .blank-arrow {
@@ -2474,4 +2500,34 @@ textarea {
     border: 0;
     padding: 7px;
 
+  }
+
+  
+/* Rating Star Widgets Style */
+.rating-stars ul {
+    list-style-type:none;
+    padding:0;
+    
+    -moz-user-select:none;
+    -webkit-user-select:none;
+  }
+  .rating-stars ul > li.star {
+    display:inline-block;
+    
+  }
+  
+  /* Idle State of the stars */
+  .rating-stars ul > li.star > i.fa {
+    font-size:2.5em; /* Change the size of the stars */
+    color:#ccc; /* Color on idle state */
+  }
+  
+  /* Hover state of the stars */
+  .rating-stars ul > li.star.hover > i.fa {
+    color:#FFCC36;
+  }
+  
+  /* Selected state of the stars */
+  .rating-stars ul > li.star.selected > i.fa {
+    color:#FF912C;
   }

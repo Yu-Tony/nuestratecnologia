@@ -12,9 +12,7 @@ include_once 'navbar/navbar.php';
     <meta name="author" content="">
     <title>Detalles del producto</title>
 
-	<!--https://harvesthq.github.io/chosen/-->
-	<link rel="stylesheet" href="chosen/docsupport/prism.css">
-  <link rel="stylesheet" href="chosen/chosen.css">
+
 
 </head><!--/head-->
 
@@ -86,8 +84,9 @@ include_once 'navbar/navbar.php';
 								
 							
 									
-								<p><b>Opciones:</b> 
-									<select data-placeholder="Escribe para comenzar a filtrar" multiple class="chosen-select" name="test" data-toggle="tooltip" data-placement="right" title="Seleccionar una o varias categorías para el producto.">
+								<p style="margin: 0px">
+									<b>Opciones:</b> 
+									<select  name="marcaProducto" id="marcaProducto" required data-toggle="tooltip" data-placement="right" title="Seleccionar una opcion.">
 										<option value=""></option>
 										<option>American Black Bear</option>
 										<option>Asiatic Black Bear</option>
@@ -98,16 +97,33 @@ include_once 'navbar/navbar.php';
 										<option>Polar Bear</option>
 										<option>Spectacled Bear</option>
 									</select>
-									
 								</p>
 
-									<label>Cantidad:</label>
-									<input type="text"  />
-									
+							
+
+								<div class="row" style="margin: 4%">
+									<div class="row">
+										<label>Cantidad:</label>
+									</div>
+									<div class="row">
+										<input type="number" style="background: #F0F0E9; border: medium none;" />
+									</div>
+								</div>
+
+								<div class="row">
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
-										Add to cart
+										Añadir al carrito
 									</button>
+
+									<button type="button" class="btn btn-fefault cart">
+										<i class="fa fa-star"></i>
+										Añadir a la lista de deseos
+									</button>
+								</div>
+								
+									
+								
 
 								
 
@@ -120,9 +136,9 @@ include_once 'navbar/navbar.php';
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#details" data-toggle="tab">Details</a></li>
+								<li class="active"><a href="#details" data-toggle="tab">Detalles</a></li>
 						
-								<li ><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+								<li ><a href="#reviews" data-toggle="tab">Reseñas</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
@@ -137,22 +153,42 @@ include_once 'navbar/navbar.php';
 							<div class="tab-pane fade " id="reviews" >
 								<div class="col-sm-12">
 									<ul>
-										<li><a href=""></a></li>
-										<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-										<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
+										<li><i class="fa fa-user"></i> EUGEN</li>
+										<li><i class="fa fa-calendar-o"></i> 31 DEC 2014</li>
 									</ul>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-									<p><b>Write Your Review</b></p>
+									
+									<hr class="new1">
+
+									<p><b>Escribe tu reseña</b></p>
 									
 									<form action="#">
-										<span>
-											<input type="text" placeholder="Your Name"/>
-											<input type="email" placeholder="Email Address"/>
-										</span>
+									
 										<textarea name="" ></textarea>
-										<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
+										<b>Calificación: </b> 
+									
+										<div class='rating-stars text-center'>
+											<ul id='stars'>
+												<li class='star' title='Poor' data-value='1'>
+												<i class='fa fa-star fa-fw'></i>
+												</li>
+												<li class='star' title='Fair' data-value='2'>
+												<i class='fa fa-star fa-fw'></i>
+												</li>
+												<li class='star' title='Good' data-value='3'>
+												<i class='fa fa-star fa-fw'></i>
+												</li>
+												<li class='star' title='Excellent' data-value='4'>
+												<i class='fa fa-star fa-fw'></i>
+												</li>
+												<li class='star' title='WOW!!!' data-value='5'>
+												<i class='fa fa-star fa-fw'></i>
+												</li>
+											</ul>
+                                        </div>
+
 										<button type="button" class="btn btn-default pull-right">
-											Submit
+											Enviar
 										</button>
 									</form>
 								</div>
@@ -162,93 +198,57 @@ include_once 'navbar/navbar.php';
 					</div><!--/category-tab-->
 					
 					<div class="recommended_items"><!--recommended_items-->
-						<h2 class="title text-center">recommended items</h2>
+						<h2 class="title text-center">Productos Recomendados</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
 								<div class="item active">	
+
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="images/home/recommend1.jpg" alt="" />
 													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
+													<p>Mouse</p>
 													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 												</div>
 											</div>
 										</div>
 									</div>
+
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="images/home/recommend2.jpg" alt="" />
 													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
+													<p>Mouse</p>
 													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 												</div>
 											</div>
 										</div>
 									</div>
+
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
 													<img src="images/home/recommend3.jpg" alt="" />
 													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
+													<p>Mouse</p>
 													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 												</div>
 											</div>
 										</div>
 									</div>
+
 								</div>
-								<div class="item">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								
+									
+							
 							</div>
-							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							  </a>
-							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							  </a>			
+									
 						</div>
 					</div><!--/recommended_items-->
 					
@@ -266,8 +266,6 @@ include_once 'navbar/navbar.php';
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
 
-	<script src="chosen/chosen.jquery.js" type="text/javascript"></script>
-  <script src="chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-  <script src="chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+
 </body>
 </html>
